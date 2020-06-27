@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from decouple import config
 import pytest
 import datetime
+from requests import get, post
 
 
 class Conector:
@@ -86,50 +87,27 @@ class Interar_BD(Conector):
         except:
             return False
 
-    def buscar_Planeta(self, collection, origem):
+    def buscar_Planeta(self, collection):
         try:
-            if origem == 'B':
-                if self.conectar():
-                    arquivo = self.buscar_collection('Planetas').find()
-                    self.desconectar()
-                    return arquivo
-            elif origem == 'C':
-                if self.conectar():
-                    arquivo = self.buscar_collection(collection).find()
-                    self.desconectar()
-                    return arquivo
-
-        except:
-            return False
-
-    def buscar_valor_agregado(self, collection, variavel):
-        try:
-            dc = [
-                {"$group": {"_id": f"${variavel}", "valor": {"$sum": "$Valor"}}},
-                {"$sort": SON([("_id", 1), ("valor", 1)])}
-            ]
             if self.conectar():
-                arquivo = self.buscar_collection(collection).aggregate(dc)
+                arquivo = self.buscar_collection(collection).find()
                 self.desconectar()
                 return arquivo
         except:
             return False
 
+    def buscar_planeta_id(self, collection, variavel):
+        try:
+            if self.conectar():
+                arquivo = self.buscar_collection(collection).find_one({"_id": variavel})
+                self.desconectar()
+                return arquivo
 
+        except:
+            return False
 
 
 if __name__ == '__main__':
-    a, b, c, d, e = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], \
-                    ['02/03/2020', '02/03/2020', '02/03/2020', '03/03/2020', '04/03/2020', '05/03/2020', '05/03/2020',
-                     '05/03/2020', '06/03/2020', '06/03/2020'], \
-                    [1452.28, 269.56, 50.39, 665.60, 133.02, 331.51, 500, 96.30, 2405.23, 1137.44], \
-                    ['AMBEV', 'OI', 'Celular', 'Itaipava', 'Seguro', 'Assim', 'Ademir', 'Água', 'Souza Cruz', 'Luz'], \
-                    ['02/03/2020', '02/03/2020', '02/03/2020', '03/03/2020', '04/03/2020', '05/03/2020', '05/03/2020',
-                     '05/03/2020', '06/03/2020', '06/03/2020']
-    for (id, data, valor, cliente, vencimento) in zip(a, b, c, d, e):
-        dic = {"_id": id,
-               "Data": datetime.datetime.strptime(data, "%d/%m/%Y"), "Valor": valor, "Cliente": cliente,
-               "vencimento": vencimento}
-        id = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"),
-                        banco='Contabil').inserir_documento(collection='Gastos_Bar', arquivo=dic)
-        print(id)
+        id = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo")).buscar_planeta_id('Planetas',1)
+        id['Aparicao'] = 5
+        print(id['Aparicao'])
