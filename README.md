@@ -56,7 +56,15 @@ pip install -r requirements.txt
 
 ### <a name="Testes">4.Efetuando testes</a>  
 
-&nbsp;&nbsp;&nbsp;&nbsp;Com o Eclipse aberto, ir em src/test/Java e rodar o projeto com JUNIT, o sistema efetuará alguns testes de integração e alguns testes unitários, retornando verde se tudo deu certo ou vermelho se algo deu errado.(Normalmente quando você builda o projeto com mvn package ele já efetua os testes sozinho)
+&nbsp;&nbsp;&nbsp;&nbsp;Com o CMD aberto, execute o seguinte codigo:
+
+```
+
+Pytest
+
+```
+
+Todos os testes serão executados automaticamente.
 
 ### <a name="Funcionalidades">5.Funcionalidades</a>
 
