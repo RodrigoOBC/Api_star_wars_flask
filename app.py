@@ -80,13 +80,20 @@ def buscar_nome(nome):
 def buscar_tudo():
     IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
     Planetas = IT.buscar_Planeta("Planetas")
+    Planetas_dic = []
     for planeta in Planetas:
+        Planetas_dic.append(planeta)
+
+    for planeta in Planetas_dic:
         filmes = get(f"https://swapi.dev/api/planets/?search={planeta['Nome']}").json()
         if len(filmes["results"]) > 0:
-            pass
-    # planeta['Filmes'] = len(get(f"https://swapi.dev/api/planets/?search={planeta['Nome']}").json()['results'][0]["films"])
+            planeta['Filmes'] = len(filmes['results'][0]["films"])
+        else:
+            planeta['Filmes'] = 0
+
+
     response = app.response_class(
-        response=json.dumps(list(Planetas)),
+        response=json.dumps(Planetas_dic),
         status=200,
         mimetype='application/json'
     )
