@@ -34,9 +34,27 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Para o projeto foi utilizado a linguagem Python na sua versão 3.7, Flask 1.1.1(apenas como base), pyteste e tambem o Postman para realizar as interaçãoes de API.
 
 ### <a name="Config">3.Instalando a API</a>  
+
 &nbsp;&nbsp;&nbsp;&nbsp;Para utilizar o projeto deverá ser instalado o <a href="https://www.python.org/downloads/release/python-383/">Python 3.8 ou 3.7</a>, a IDE de sua preferência,
 <a href="https://www.mongodb.com/download-center?jmp=nav#community">MongoDB Community Server</a> baseado em seu sistema operacional.
 &nbsp;&nbsp;&nbsp;&nbsp;
+
+#### &nbsp;&nbsp;&nbsp;&nbsp;Banco de Dados
+&nbsp;&nbsp;&nbsp;&nbsp; Para a realização desse desafio usei um banco mongo pessoal, então o usuário deverá alterar os dados de conexão nos seguintes trexos do codigo:
+
+&nbsp;&nbsp;&nbsp;&nbsp; Back_end > BD_MONGO > Conector.py:
+```python
+
+class Conector:
+    def __init__(self, senha=None, usuario=None):
+        self.senha = senha
+        self.usuario = usuario
+        self.conn = MongoClient(
+            f'seu link de conexão')
+        self.conn.close()
+
+```
+
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;Git
 &nbsp;&nbsp;&nbsp;&nbsp;Clone o projeto no repositorio de preferencia, utilizando o seguinte codigo : 

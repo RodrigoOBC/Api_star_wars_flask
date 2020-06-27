@@ -15,7 +15,7 @@ def not_found(e):
 @app.route('/inserir_planeta', methods=['POST'])
 def inserir_planeta():
     if request.method == 'POST':
-        IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
+        IT = Interar_BD()
         json_planetas = request.get_json()
         id = IT.inserir_documento("Planetas", json_planetas)
         response = app.response_class(
@@ -36,7 +36,7 @@ def inserir_planeta():
 @app.route('/deletar_planeta/id=<id>', methods=['DELETE'])
 def deletar_planetas(id):
     if request.method == 'DELETE':
-        IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
+        IT = Interar_BD()
         Planetas = IT.deletar_Planeta('Planetas', int(id))
         if Planetas:
             response = app.response_class(
@@ -55,7 +55,7 @@ def deletar_planetas(id):
 
 @app.route('/buscar_planeta/id=<id>', methods=['Get'])
 def buscar_id(id):
-    IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
+    IT = Interar_BD()
     Planetas = IT.buscar_planeta_id('Planetas', int(id))
     filmes = len(get(f"https://swapi.dev/api/planets/?search={Planetas['Nome']}").json()['results'][0]["films"])
     Planetas["Filmes"] = filmes
@@ -69,7 +69,7 @@ def buscar_id(id):
 
 @app.route('/buscar_planeta/nome=<nome>', methods=['Get'])
 def buscar_nome(nome):
-    IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
+    IT = Interar_BD()
     Planetas = IT.buscar_planeta_nome("Planetas", nome)
     filmes = len(get(f"https://swapi.dev/api/planets/?search={Planetas['Nome']}").json()['results'][0]["films"])
     Planetas["Filmes"] = filmes
@@ -83,7 +83,7 @@ def buscar_nome(nome):
 
 @app.route('/buscar_planeta/', methods=['Get'])
 def buscar_tudo():
-    IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
+    IT = Interar_BD()
     Planetas = IT.buscar_Planeta("Planetas")
     Planetas_dic = []
     for planeta in Planetas:
@@ -108,7 +108,7 @@ def buscar_tudo():
 @app.route('/atualizar_planeta/id=<id>', methods=['PUT'])
 def atualizar_planeta(id):
     if request.method == 'PUT':
-        IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
+        IT = Interar_BD()
         json_planetas = request.get_json()
         Planetas = IT.autalizar_Planeta('Planetas', int(id), json_planetas)
         if Planetas:
