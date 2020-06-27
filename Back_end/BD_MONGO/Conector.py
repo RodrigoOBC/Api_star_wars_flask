@@ -61,6 +61,8 @@ class Interar_BD(Conector):
     def inserir_documento(self, collection, arquivo):
         try:
             if self.conectar():
+                id = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo")).busca_id('Planetas')
+                arquivo['_id'] = list(id)[0]['_id']+1
                 id_aqu = self.buscar_collection(collection).insert_one(arquivo).inserted_id
                 self.desconectar()
                 return id_aqu
@@ -106,8 +108,16 @@ class Interar_BD(Conector):
         except:
             return False
 
+    def busca_id(self, collection):
+        try:
+            if self.conectar():
+                arquivo = self.buscar_collection(collection).find().sort([("_id", -1)]).limit(1)
+                self.desconectar()
+                return arquivo
+
+        except:
+            return False
+
 
 if __name__ == '__main__':
-        id = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo")).buscar_planeta_id('Planetas',1)
-        id['Aparicao'] = 5
-        print(id['Aparicao'])
+   pass
