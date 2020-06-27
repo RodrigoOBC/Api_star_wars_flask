@@ -38,13 +38,6 @@
 <a href="https://www.mongodb.com/download-center?jmp=nav#community">MongoDB Community Server</a> baseado em seu sistema operacional.
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-
-#### &nbsp;&nbsp;&nbsp;&nbsp;NO MAVEN
-&nbsp;&nbsp;&nbsp;&nbsp;Primeiramente instalar o Apache Maven e setar suas variaveis de ambiente corretamente, acessar a pasta raiz
-do projeto pelo prompt, executar o comando "mvn package", aguardar baixar as dependências, aguardar executar os testes 
-automatizados e ao terminar de buildar o projeto acessar na pasta raiz a pasta "target" lá estará o jar responsavel pela api,
-basta executa-lo junto com o mongodb que a api estará rodando em segundo plano, utilize o postman para fazer testes mais facilmente.
-
 #### &nbsp;&nbsp;&nbsp;&nbsp;Git
 &nbsp;&nbsp;&nbsp;&nbsp;Clone o projeto no repositorio de preferencia, utilizando o seguinte codigo : 
 ```JSON
