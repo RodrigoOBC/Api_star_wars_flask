@@ -7,14 +7,19 @@ from Back_end import Interar_BD
 app = Flask(__name__)
 
 
+@app.errorhandler(404)
+def not_found(e):
+    return 'Pronto você não está, jovem padawan!'
+
+
 @app.route('/inserir_planeta', methods=['POST'])
 def inserir_planeta():
     if request.method == 'POST':
         IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
         json_planetas = request.get_json()
-        IT.inserir_documento("Planetas", json_planetas)
+        id = IT.inserir_documento("Planetas", json_planetas)
         response = app.response_class(
-            response=json.dumps({"resultado": "incluido"}),
+            response=json.dumps({"resultado": "incluido",'id':id}),
             status=201,
             mimetype='application/json'
         )
