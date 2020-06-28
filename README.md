@@ -31,7 +31,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;O objetivo deste projeto é criar uma API rest que armazenará dados como nome de um planeta, clima e terreno. Retornando também a quantidade de aparições de cada planeta nos filmes de Star Wars registrada na API SWAPI.
 
 ### <a name="Tecnologias">2.Tecnologias utilizadas</a> 
-&nbsp;&nbsp;&nbsp;&nbsp;Para o projeto foi utilizado a linguagem Python na sua versão 3.7, Flask 1.1.1(apenas como base), pyteste e tambem o Postman para realizar as interaçãoes de API.
+&nbsp;&nbsp;&nbsp;&nbsp;Para o projeto foi utilizado a linguagem Python na sua versão 3.7, Flask 1.1.1(apenas como base), pyteste e também o Postman para realizar as interações de API.
 
 ### <a name="Config">3.Instalando a API</a>  
 
@@ -40,7 +40,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;Banco de Dados
-&nbsp;&nbsp;&nbsp;&nbsp; Para a realização desse desafio usei um banco mongo pessoal, então o usuário deverá alterar os dados de conexão nos seguintes trexos do codigo:
+&nbsp;&nbsp;&nbsp;&nbsp; Para a realização desse desafio, usei um banco mongo pessoal, então o usuário deverá alterar os dados de conexão nos seguintes trechos do código:
 
 &nbsp;&nbsp;&nbsp;&nbsp; Back_end > BD_MONGO > Conector.py:
 
@@ -69,6 +69,7 @@ class Conector:
 &nbsp;&nbsp;&nbsp;&nbsp;Clone o projeto no repositorio de preferencia, utilizando o seguinte codigo : 
 ```JSON
 git clone git@github.com:RodrigoOBC/desafio_b2w.git
+
 ```
 #### &nbsp;&nbsp;&nbsp;&nbsp;Python
 &nbsp;&nbsp;&nbsp;&nbsp;Para instalar a API, você deverá realizar o seguinte comando:
@@ -123,7 +124,7 @@ http://127.0.0.1:5000/inserir_planeta
 &nbsp;&nbsp;&nbsp;&nbsp;Ex:
 http://127.0.0.1:5000/buscar_planeta
 
-&nbsp;&nbsp;&nbsp;&nbsp;serão retornados todos os planetas , juntamente com as seus respectivos: ids, nomes, climas, terrenos e aparições em filmes no formato json. As aparições dos planetas são atualizadas em toda solicitação.
+&nbsp;&nbsp;&nbsp;&nbsp;Serão retornados todos os planetas , juntamente com as seus respectivos: ids, nomes, climas, terrenos e aparições em filmes no formato json. As aparições dos planetas são atualizadas em toda solicitação.
 
 #### <a name="buscaid">III. Listar por ID:</a>
 
