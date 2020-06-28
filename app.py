@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from decouple import config
 from flask import json
-from requests import get, post
+from requests import get, post 
 from Back_end import Interar_BD
 
 app = Flask(__name__)
