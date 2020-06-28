@@ -43,6 +43,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp; Para a realização desse desafio usei um banco mongo pessoal, então o usuário deverá alterar os dados de conexão nos seguintes trexos do codigo:
 
 &nbsp;&nbsp;&nbsp;&nbsp; Back_end > BD_MONGO > Conector.py:
+
 ```python
 
 class Conector:
@@ -53,6 +54,14 @@ class Conector:
             f'seu link de conexão')
         self.conn.close()
 
+
+    def conectar(self):
+        try:
+            self.conn = MongoClient(
+                f'seu link de conexão')
+            return True
+        except:
+            return False
 ```
 
 
