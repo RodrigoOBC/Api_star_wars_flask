@@ -62,7 +62,27 @@ class Conector:
             return True
         except:
             return False
+            .
+            .
+            .
+            
+            
+class Interar_BD(Conector):
+    def __init__(self, user, senha, banco=None):
+        self.senha = senha
+        self.user = user
+        Conector.__init__(self, senha=self.senha, usuario=self.user)
+        self.banco = "Seu banco aqui" <--------
 ```
+
+&nbsp;&nbsp;&nbsp;&nbsp; app.py:
+
+
+```python
+app = Flask(__name__)
+COLLECTION = "Planetas" <---- Sua tabela aqui
+```
+
 
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;Git
