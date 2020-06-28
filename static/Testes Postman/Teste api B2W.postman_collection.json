@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "7fcd50e5-614a-4cb7-a57d-c6e4db9787f1",
+		"name": "Teste api B2W",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Inserir Planeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dcb7f691-371b-4a59-b9f7-734cc6d0f3ef",
+						"exec": [
+							"tests['Codigo do status'] = responseCode.code == 201;\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"Nome\": \"Coruscant\",\r\n   \"Clima\": \"Seco\",\r\n   \"Terreno\": \"Planice\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/inserir_planeta",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"inserir_planeta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Planetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7bff61e9-9926-4089-a8f8-2089dd052fdd",
+						"exec": [
+							"tests['Codigo do status'] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/buscar_planeta",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"buscar_planeta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Planeta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"Nome\": \"Coruscant\",\r\n   \"Clima\": \"Tropical\",\r\n   \"Terreno\": \"Montanhoso\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/atualizar_planeta/id=0",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"atualizar_planeta",
+						"id=0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Planetas ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2a87bcce-674a-4967-aecb-75209ac90b62",
+						"exec": [
+							"tests['Codigo do status'] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/buscar_planeta/id=0",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"buscar_planeta",
+						"id=0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Planetas nomes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c621e4e6-7ad3-4ef7-9f1f-83c978f2a267",
+						"exec": [
+							"tests['Codigo do status'] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/buscar_planeta/nome=Coruscant",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"buscar_planeta",
+						"nome=Coruscant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir Planeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ac2f0848-c999-4f76-849b-9eed1c5db5e8",
+						"exec": [
+							"tests['Codigo do status'] = responseCode.code == 202;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/deletar_planeta/id=0",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"deletar_planeta",
+						"id=0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Planeta Deletado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/buscar_planeta/id=0",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"buscar_planeta",
+						"id=0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -18,19 +18,21 @@ def inserir_planeta():
         IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
         json_planetas = request.get_json()
         id = IT.inserir_documento("Planetas", json_planetas)
-        response = app.response_class(
-            response=json.dumps({"resultado": "incluido",'id':id}),
-            status=201,
-            mimetype='application/json'
-        )
-        return response
 
-    response = app.response_class(
-        response=json.dumps({"resultado": "não encontrado"}),
-        status=404,
-        mimetype='application/json'
-    )
-    return response
+        if type(id) == int:
+            response = app.response_class(
+                response=json.dumps({"resultado": "incluido", 'id': id}),
+                status=201,
+                mimetype='application/json'
+            )
+            return response
+        else:
+            response = app.response_class(
+                response=json.dumps({"resultado": "não inserido"}),
+                status=404,
+                mimetype='application/json'
+            )
+            return response
 
 
 @app.route('/deletar_planeta/id=<id>', methods=['DELETE'])
@@ -57,11 +59,26 @@ def deletar_planetas(id):
 def buscar_id(id):
     IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
     Planetas = IT.buscar_planeta_id('Planetas', int(id))
-    filmes = len(get(f"https://swapi.dev/api/planets/?search={Planetas['Nome']}").json()['results'][0]["films"])
-    Planetas["Filmes"] = filmes
+    if Planetas:
+        Planetas_dic = []
+        Planetas_dic.append(Planetas)
+
+        for planeta in Planetas_dic:
+            filmes = get(f"https://swapi.dev/api/planets/?search={planeta['Nome']}").json()
+            if len(filmes["results"]) > 0:
+                planeta['Filmes'] = len(filmes['results'][0]["films"])
+            else:
+                planeta['Filmes'] = 0
+        response = app.response_class(
+            response=json.dumps(Planetas_dic),
+            status=200,
+            mimetype='application/json'
+        )
+        return response
+
     response = app.response_class(
-        response=json.dumps(Planetas),
-        status=200,
+        response=json.dumps({"resultado": "erro ao encontrar"}),
+        status=404,
         mimetype='application/json'
     )
     return response
@@ -71,10 +88,17 @@ def buscar_id(id):
 def buscar_nome(nome):
     IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
     Planetas = IT.buscar_planeta_nome("Planetas", nome)
-    filmes = len(get(f"https://swapi.dev/api/planets/?search={Planetas['Nome']}").json()['results'][0]["films"])
-    Planetas["Filmes"] = filmes
+    Planetas_dic = []
+    Planetas_dic.append(Planetas)
+
+    for planeta in Planetas_dic:
+        filmes = get(f"https://swapi.dev/api/planets/?search={planeta['Nome']}").json()
+        if len(filmes["results"]) > 0:
+            planeta['Filmes'] = len(filmes['results'][0]["films"])
+        else:
+            planeta['Filmes'] = 0
     response = app.response_class(
-        response=json.dumps(Planetas),
+        response=json.dumps(Planetas_dic),
         status=200,
         mimetype='application/json'
     )
@@ -95,7 +119,6 @@ def buscar_tudo():
             planeta['Filmes'] = len(filmes['results'][0]["films"])
         else:
             planeta['Filmes'] = 0
-
 
     response = app.response_class(
         response=json.dumps(Planetas_dic),
