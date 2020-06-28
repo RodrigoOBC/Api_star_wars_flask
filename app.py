@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from decouple import config
 from flask import json
-from requests import get, post 
+from requests import get, post
 from Back_end import Interar_BD
 
 app = Flask(__name__)
-
+COLLECTION = "Planetas"
 
 @app.errorhandler(404)
 def not_found(e):
@@ -15,9 +15,9 @@ def not_found(e):
 @app.route('/inserir_planeta', methods=['POST'])
 def inserir_planeta():
     if request.method == 'POST':
-        IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
+        IT = Interar_BD()
         json_planetas = request.get_json()
-        id = IT.inserir_documento("Planetas", json_planetas)
+        id = IT.inserir_documento(COLLECTION, json_planetas)
 
         if type(id) == int:
             response = app.response_class(
@@ -38,8 +38,8 @@ def inserir_planeta():
 @app.route('/deletar_planeta/id=<id>', methods=['DELETE'])
 def deletar_planetas(id):
     if request.method == 'DELETE':
-        IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
-        Planetas = IT.deletar_Planeta('Planetas', int(id))
+        IT = Interar_BD()
+        Planetas = IT.deletar_Planeta(COLLECTION, int(id))
         if Planetas:
             response = app.response_class(
                 response=json.dumps({"resultado": "deletado"}),
@@ -57,8 +57,8 @@ def deletar_planetas(id):
 
 @app.route('/buscar_planeta/id=<id>', methods=['Get'])
 def buscar_id(id):
-    IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
-    Planetas = IT.buscar_planeta_id('Planetas', int(id))
+    IT = Interar_BD()
+    Planetas = IT.buscar_planeta_id(COLLECTION, int(id))
     if Planetas:
         Planetas_dic = []
         Planetas_dic.append(Planetas)
@@ -86,8 +86,8 @@ def buscar_id(id):
 
 @app.route('/buscar_planeta/nome=<nome>', methods=['Get'])
 def buscar_nome(nome):
-    IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
-    Planetas = IT.buscar_planeta_nome("Planetas", nome)
+    IT = Interar_BD()
+    Planetas = IT.buscar_planeta_nome(COLLECTION, nome)
     Planetas_dic = []
     Planetas_dic.append(Planetas)
 
@@ -107,8 +107,8 @@ def buscar_nome(nome):
 
 @app.route('/buscar_planeta/', methods=['Get'])
 def buscar_tudo():
-    IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
-    Planetas = IT.buscar_Planeta("Planetas")
+    IT = Interar_BD()
+    Planetas = IT.buscar_Planeta(COLLECTION)
     Planetas_dic = []
     for planeta in Planetas:
         Planetas_dic.append(planeta)
@@ -131,9 +131,9 @@ def buscar_tudo():
 @app.route('/atualizar_planeta/id=<id>', methods=['PUT'])
 def atualizar_planeta(id):
     if request.method == 'PUT':
-        IT = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo"))
+        IT = Interar_BD()
         json_planetas = request.get_json()
-        Planetas = IT.autalizar_Planeta('Planetas', int(id), json_planetas)
+        Planetas = IT.autalizar_Planeta(COLLECTION, int(id), json_planetas)
         if Planetas:
             response = app.response_class(
                 response=json.dumps({"resultado": "atualizado"}),
