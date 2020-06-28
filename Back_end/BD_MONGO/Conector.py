@@ -62,7 +62,12 @@ class Interar_BD(Conector):
         try:
             if self.conectar():
                 id = Interar_BD(user=config("usuario_mongo_adm"), senha=config("senha_adm_mongo")).busca_id('Planetas')
-                arquivo['_id'] = list(id)[0]['_id'] + 1
+                if arquivo['Nome'] == None or arquivo['Clima'] == None or arquivo['Terreno'] == None:
+                    return False
+                if len(list(id)) > 0:
+                    arquivo['_id'] = list(id)[0]['_id'] + 1
+                else:
+                    arquivo['_id'] = 0
                 id_aqu = self.buscar_collection(collection).insert_one(arquivo).inserted_id
                 self.desconectar()
                 return id_aqu

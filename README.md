@@ -74,13 +74,13 @@ pip install -r requirements.txt
 
 ### <a name="Testes">4.Efetuando testes</a>  
 
-&nbsp;&nbsp;&nbsp;&nbsp;Com o CMD aberto, execute o seguinte codigo:
-
-```
-
-Pytest
-
-```
+&nbsp;&nbsp;&nbsp;&nbsp;Para a realização dos testes, é preciso ter instalado o postman:
+<ol>
+<li><a href="https://www.postman.com">Instale o Postman</a></li>
+<li>Importe o arquivo Teste api "B2W.postman_collection.json"</li>
+<li>Inicie a API</li>
+<li>Aperte run</li>
+</ol>
 
 Todos os testes serão executados automaticamente.
 
