@@ -148,7 +148,4 @@ http://127.0.0.1:5000/deletar_planeta/id=2
 
 &nbsp;&nbsp;&nbsp;&nbsp;API criada e documentada por Rodrigo de Brito de Oliveira Cabral,agradeço a oportunidade de poder demonstrar minhas habilidades  e <b>que a força esteja com voces!!!</b>
 
-<div align="center">
-  <img src="img/rodapé.jpg"/>
-<div>  
 
