@@ -2,7 +2,7 @@
   <img src="static/imagens/foto_capa.png"/> 
 </div>
 
-# DESAFIO API STAR WARS B2W - PEDRO TEIXEIRA BISOGNIN
+# DESAFIO API STAR WARS B2W - Rodrigo Cabral
 
 ## Índice
 
